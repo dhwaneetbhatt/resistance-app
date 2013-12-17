@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12" id="header">
+            <h2>The Resistance</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2">
+            <ul id="menu">
+                <li>{{#linkTo 'messages'}}BroadCast Messages{{/linkTo}}</li>
+                <li>Saved Messages</li>
+                <li>Logout</li>
+            </ul>
+        </div>
+        <div class="col-xs-10">
+            {{outlet}}
+        </div>
+    </div>
+</div>

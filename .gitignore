@@ -1,0 +1,11 @@
+/bootstrap/compiled.php
+/vendor
+composer.phar
+composer.lock
+.DS_Store
+Thumbs.db
+public/node_modules
+public/dist/app.css
+public/dist/app.js
+public/dist/lib.js
+public/dist/templates.js
