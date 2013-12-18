@@ -1,1 +1,20 @@
-Messages appear here
+<div>
+    {{#if isCreating}}
+        {{textarea value=text class="form-control message-input" id="text" name="text" rows="3"}}
+        <button {{action 'save'}} class="btn btn-primary">Send</button>
+        <button {{action 'cancel'}} class="btn btn-default">Cancel</button>
+    {{else}}
+        <button {{action 'new'}} class='btn btn-info'>New Broadcast</button>
+    {{/if}}
+</div>
+<table class='table'>
+    <thead>
+        <tr><th>Messages</th></tr>
+    </thread>
+    {{#each model}}
+        <tr>
+            <td>{{userId}}</td>
+            <td>{{text}}</td>
+        </tr>
+    {{/each}}
+</table>

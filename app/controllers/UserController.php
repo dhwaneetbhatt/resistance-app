@@ -1,7 +1,7 @@
 <?php
 
 /**
- * This controller handles the User model and related RESTful service
+ * This controller handles the User model and related RESTful services
  */
 class UserController extends BaseController
 {

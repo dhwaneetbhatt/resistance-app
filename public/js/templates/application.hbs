@@ -5,14 +5,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-xs-2">
+        <div class="col-xs-3">
             <ul id="menu">
-                <li>{{#linkTo 'messages'}}BroadCast Messages{{/linkTo}}</li>
+                <li>{{#linkTo 'messages'}}Broadcast Messages{{/linkTo}}</li>
                 <li>Saved Messages</li>
-                <li>Logout</li>
+                <li><a href='/logout'>Logout</a></li>
             </ul>
         </div>
-        <div class="col-xs-10">
+        <div class="col-xs-9">
             {{outlet}}
         </div>
     </div>

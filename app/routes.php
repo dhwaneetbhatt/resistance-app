@@ -17,9 +17,15 @@ Route::group(array("before" => "auth"), function()
     {
         return View::make('home');
     }));
+
+    Route::controller('messages', 'MessageController');
+
+    Route::controller('comments', 'CommentController');
 });
 
-Route::get('/login', 'UserController@showLogin')->before('guest');
+Route::get('/login', array("as" => "login",
+                           "uses" => "UserController@showLogin"
+          ))->before('guest');
 
 Route::post('/login', 'UserController@doLogin');
 
