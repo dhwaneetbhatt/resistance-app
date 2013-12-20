@@ -3,6 +3,20 @@
  */
 Resistance.MessagesController = Ember.ArrayController.extend({
 
+    remainingText: function() {
+        var text = this.get('text'), length = 0, remaining;
+        if (text) {
+            length = text.length;
+        }
+        remaining = 200 - length;
+        if (remaining < 0) {
+            this.set('error', true);
+        } else {
+            this.set('error', false);
+        }
+        return remaining;
+    }.property('text'),
+
     actions: {
 
         /**
@@ -17,9 +31,10 @@ Resistance.MessagesController = Ember.ArrayController.extend({
          */
         save: function() {
             var text = this.get('text');
+            var user = Resistance.get('user');
 
             var message = this.store.createRecord('message', {
-                'userId': 1,
+                'userId': user.get('id'),
                 'text': text
             });
             message.save();

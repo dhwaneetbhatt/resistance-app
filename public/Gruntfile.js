@@ -7,7 +7,7 @@ module.exports = function(grunt) {
             vendor: {
                 src: ['js/lib/jquery-1.10.2.min.js', 'js/lib/bootstrap.js',
                       'js/lib/handlebars-1.1.2.js', 'js/lib/ember-1.2.0.js',
-                      'js/lib/ember-data-1.0.0.js'],
+                      'js/lib/ember-data-1.0.0.js', 'js/lib/moment.min.js'],
                 dest:'dist/lib.js'
             },
             app: {

@@ -1,9 +1,54 @@
-#menu {
+.right {
+    float: right;
+}
+
+#header {
+    border-style: solid;
+    border-width: 0 0 2px 0;
+}
+
+.main {
+    margin-top: 3px;
+}
+
+ul#menu {
     list-style: none;
+}
+
+ul#menu li {
+    border-style: solid;
+    border-width: 1px;
+    padding: 10px;
 }
 
 .message-input {
     resize: none;
     overflow: hidden;
     margin: 10px 0 10px 0;
+}
+
+.error {
+    color: red;
+}
+
+/* Override padding*/
+.btn-new-msg {
+    padding-left: 0!important;
+}
+
+.message {
+    border-style: solid;
+    border-width: 2px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.message .row {
+    margin: 5px 0 5px 0;
+}
+
+.user {
+    font-weight: bold;
+    text-decoration: underline;
+    color: blue;
 }

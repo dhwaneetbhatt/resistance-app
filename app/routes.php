@@ -21,6 +21,8 @@ Route::group(array("before" => "auth"), function()
     Route::controller('messages', 'MessageController');
 
     Route::controller('comments', 'CommentController');
+
+    Route::controller('user', 'UserController');
 });
 
 Route::get('/login', array("as" => "login",

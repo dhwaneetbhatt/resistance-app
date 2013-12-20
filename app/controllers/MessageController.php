@@ -13,15 +13,25 @@ class MessageController extends BaseController
         // array to be returned to the UI
         $messages = array();
 
-        // fetch all messages
-        $dbMessages = Message::all();
+        // fetch all messages sorted by creation date
+        $dbMessages = Message::orderBy('created_at', 'desc')->get();
 
         foreach ($dbMessages as $message)
         {
+            // PHP, for some weird reason, gives seconds since 1970
+            $creationDate = $message->created_at->getTimestamp() * 1000;
+
+            // get the username
+            $user = $message->user;
+            $username = $user->first_name . ' ' .  $user->last_name;
+            $rank = $user->rank->name;
+
             array_push($messages, array(
                 "id" => $message->id,
-                "userId" => $message->user_id,
-                "text" => $message->text
+                "user" => $username,
+                "rank" => $rank,
+                "text" => $message->text,
+                "creationDate" => $creationDate
             ));
         }
 

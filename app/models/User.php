@@ -32,6 +32,14 @@ class User extends Eloquent implements UserInterface
     }
 
     /**
+     * Rank for the user
+     */
+    public function rank()
+    {
+        return $this->hasOne('Rank', 'id', 'rank_id');
+    }
+
+    /**
      * Messages for the user
      */
     public function messages()

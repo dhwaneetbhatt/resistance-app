@@ -1,20 +1,62 @@
-<div>
-    {{#if isCreating}}
-        {{textarea value=text class="form-control message-input" id="text" name="text" rows="3"}}
-        <button {{action 'save'}} class="btn btn-primary">Send</button>
-        <button {{action 'cancel'}} class="btn btn-default">Cancel</button>
-    {{else}}
-        <button {{action 'new'}} class='btn btn-info'>New Broadcast</button>
-    {{/if}}
+{{#if isCreating}}
+    <div class='container'>
+        <div class='row'>
+            <div class='col-lg-12'>
+                {{textarea value=text class='form-control message-input' id='text' name='text' rows='3'}}
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-lg-11'>
+                <button {{action 'save'}} {{bindAttr disabled='error'}} class='btn btn-primary'>
+                    Send
+                </button>
+                <button {{action 'cancel'}} class='btn btn-default'>
+                    Cancel
+                </button>
+            </div>
+            <div class='col-lg-1'>
+                <label>{{remainingText}}</label>
+            <div>
+        </div>
+    </div>
+{{else}}
+    <div class='container'>
+        <div class='row'>
+            <div class='col-lg-12 btn-new-msg'>
+                <button {{action 'new'}} class='btn btn-info'>
+                    New Broadcast
+                </button>
+            </div>
+        </div>
+    </div>
+{{/if}}
+<div class='container'>
+    <div class='row'>
+        {{#each model}}
+            <div /class='message col-lg-12'>
+                <div class='row'>
+                    <div class='col-lg-4'>
+                        <span class='user'>{{user}}</span> {{rank}}
+                    </div>
+                    <div class='right'>
+                        {{format-date creationDate}}
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-lg-12'>
+                        {{text}}
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-lg-2'>
+                        <button class='btn btn-primary btn-xs'>Show Comments</button>
+                    </div>
+                    <div class='col-lg-3 col-lg-offset-7'>
+                        <button class='btn btn-primary btn-xs'>Add Comments</button>
+                        <button class='btn btn-primary btn-xs'>Save Message</button>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
 </div>
-<table class='table'>
-    <thead>
-        <tr><th>Messages</th></tr>
-    </thread>
-    {{#each model}}
-        <tr>
-            <td>{{userId}}</td>
-            <td>{{text}}</td>
-        </tr>
-    {{/each}}
-</table>
