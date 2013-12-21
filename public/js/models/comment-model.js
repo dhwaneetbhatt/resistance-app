@@ -6,7 +6,20 @@ Resistance.Comment = DS.Model.extend({
     messageId: DS.attr('number'),
     user: DS.attr('string'),
     rank: DS.attr('string'),
+    avatar: DS.attr('string'),
     text: DS.attr('string'),
     creationDate: DS.attr('date'),
-    message: DS.belongsTo('message')
+    message: DS.belongsTo('message'),
+    miniAvatar: function() {
+        return this.get('avatar') + '?s=40';
+    }.property('avatar'),
+    isLeader: function() {
+        var result, rank = this.get('rank');
+        if (rank === 'Resistance Leader') {
+            result = true;
+        } else {
+            result = false;
+        }
+        return result;
+    }.property('rank')
 });

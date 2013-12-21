@@ -8,7 +8,7 @@ class CommentTableSeeder extends Seeder
         
         DB::table('comments')->delete();
 
-        $userId1 = User::where('email', 'john.connor@email.com')->pluck('id');
+        $userId1 = User::where('email', 'dhwaneetbhatt@gmail.com')->pluck('id');
         $messages = Message::where('user_id', $userId1)->get();
 
         foreach($messages as $message)

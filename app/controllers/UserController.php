@@ -11,19 +11,7 @@ class UserController extends BaseController
      */
     public function getIndex()
     {
-        // get user from the currently logged in session
-        $id = Auth::user()->id;
-        $user = User::find($id);
-
-        $out = array(
-            'id' => $user->id,
-            'email' => $user->email,
-            'firstName' => $user->first_name,
-            'lastName' => $user->last_name,
-            'rank' => $user->rank->name
-        );
-
-        return $out;
+        return UserHelper::getCurrentUser();
     }
 
     /**

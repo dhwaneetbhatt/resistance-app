@@ -24,6 +24,7 @@ class CommentHelper extends Helper
             'userId' =>  $user->id,
             'user' => $username,
             'rank' => $rank,
+            'avatar' => $user->avatar,
             'text' => $dbComment->text,
             'creationDate' => $creationDate
         );

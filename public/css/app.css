@@ -51,7 +51,19 @@ ul#menu li {
     margin-top: 10px;
 }
 
+.message-leader {
+    border-style: solid;
+    border-color: cyan;
+    border-width: 2px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
 .message .row {
+    margin: 5px 0 5px 0;
+}
+
+.message-leader .row {
     margin: 5px 0 5px 0;
 }
 
@@ -62,5 +74,6 @@ ul#menu li {
 }
 
 .comment-create {
+    clear: both;
     margin-top: 10px;
 }

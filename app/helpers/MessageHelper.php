@@ -26,6 +26,7 @@ class MessageHelper extends Helper
             'userId' =>  $user->id,
             'user' => $username,
             'rank' => $rank,
+            'avatar' => $user->avatar,
             'text' => $dbMessage->text,
             'upvotes' => $dbMessage->upvotes,
             'downvotes' => $dbMessage->downvotes,

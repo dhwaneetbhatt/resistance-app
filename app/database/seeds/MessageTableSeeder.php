@@ -8,7 +8,7 @@ class MessageTableSeeder extends Seeder
         
         DB::table('messages')->delete();
 
-        $id1 = User::where('email', 'john.connor@email.com')->pluck('id');
+        $id1 = User::where('email', 'dhwaneetbhatt@gmail.com')->pluck('id');
 
         $id2 = User::where('email', 'will.smith@email.com')->pluck('id');
 

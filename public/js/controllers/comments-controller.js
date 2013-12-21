@@ -4,6 +4,7 @@
 Resistance.CommentsController = Ember.ArrayController.extend({
     needs: ['message'],
 
+    // caclulates remaining text in the message
     remainingText: function() {
         var text = this.get('text'), length = 0, remaining;
         if (text) {

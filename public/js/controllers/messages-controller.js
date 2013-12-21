@@ -3,6 +3,7 @@
  */
 Resistance.MessagesController = Ember.ArrayController.extend({
 
+    // calculcates remaining characters in the message
     remainingText: function() {
         var text = this.get('text'), length = 0, remaining;
         if (text) {

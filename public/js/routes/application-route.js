@@ -11,7 +11,8 @@ Resistance.ApplicationRoute = Ember.Route.extend({
                 email: data.email,
                 firstName: data.firstName,
                 lastName: data.lastName,
-                rank: data.rank
+                rank: data.rank,
+                avatar: data.avatar
             });
             Resistance.set('user', user);
         });     
