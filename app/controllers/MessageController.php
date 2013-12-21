@@ -8,39 +8,66 @@ class MessageController extends BaseController
     /**
      * Return a list of all messages
      */
-    public function getIndex()
+    public function getAll()
     {
-        // array to be returned to the UI
-        $messages = array();
+        // fetch all messages sorted by creation date
+        $dbMessages = Message::orderBy('created_at', 'desc')->get();
 
-        // fetch all messages
-        $dbMessages = Message::all();
-
-        foreach ($dbMessages as $message)
-        {
-            array_push($messages, array(
-                "id" => $message->id,
-                "userId" => $message->user_id,
-                "text" => $message->text
-            ));
-        }
+        $messages  = MessageHelper::getSvcArray($dbMessages);
 
         // return the response
-        $out = array("message" => $messages);
+        $out = array('message' => $messages);
+        return $out;
+    }
+
+    /**
+     * Return a message along with its comments
+     */
+    public function get($id)
+    {
+        // fetch all messages sorted by creation date
+        $dbMessage = Message::find($id);
+
+        $message  = MessageHelper::getSvcModel($dbMessage);
+        $comments = CommentHelper::getSvcArray($dbMessage->comments);
+
+        // return the response
+        $out = array('message' => $message, 'comments' => $comments);
         return $out;
     }
 
     /**
      * Save a new message to db
      */
-    public function postIndex()
+    public function create()
     {   
         $message = Input::get('message');
 
-        $message = new Message(array(
+        $dbMessage = new Message(array(
             'user_id' => $message['userId'],
             'text' => $message['text']
         ));
-        $message->save();
+        $dbMessage->save();
+
+        $message['id'] = $dbMessage->id;
+        $out = array('message' => $message);
+        return $out;
+    }
+
+    /**
+     * Update the model
+     */
+    public function update($id)
+    {   
+        $message = Input::get('message');
+
+        $dbMessage = Message::find($id);
+        $dbMessage->upvotes = $message['upvotes'];
+        $dbMessage->downvotes = $message['downvotes'];
+        $dbMessage->save();
+
+        $message['id'] = $dbMessage->id;
+        $out = array('message' => $message);
+        return $out;
     }
 }

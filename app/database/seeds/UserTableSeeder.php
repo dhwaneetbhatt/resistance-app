@@ -13,11 +13,12 @@ class UserTableSeeder extends Seeder
         $id2 = Rank::where('name', 'Squadron Leader')->pluck('id');
 
         User::create(array(
-            'email' => 'john.connor@email.com',
+            'email' => 'dhwaneetbhatt@gmail.com',
             'password' => Hash::make('leader'),
             'first_name' => 'John',
             'last_name' => 'Connor',
-            'rank_id' => $id1
+            'rank_id' => $id1,
+            'avatar' => UserHelper::getAvatar('dhwaneetbhatt@gmail.com')
         ));
 
         User::create(array(
@@ -25,7 +26,8 @@ class UserTableSeeder extends Seeder
             'password' => Hash::make('irobot'),
             'first_name' => 'Will',
             'last_name' => 'Smith',
-            'rank_id' => $id2
+            'rank_id' => $id2,
+            'avatar' => UserHelper::getAvatar('will.smith@email.com')
         ));
     }
 }

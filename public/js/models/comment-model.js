@@ -1,16 +1,18 @@
 /**
- * Model defintion for Message
+ * Model defintion for Comment
  */
-Resistance.Message = DS.Model.extend({
+Resistance.Comment = DS.Model.extend({
     userId: DS.attr('number'),
+    messageId: DS.attr('number'),
     user: DS.attr('string'),
     rank: DS.attr('string'),
     avatar: DS.attr('string'),
     text: DS.attr('string'),
-    upvotes: DS.attr('number'),
-    downvotes: DS.attr('number'),
-    comments: DS.hasMany('comment', {async: 'true'}),
     creationDate: DS.attr('date'),
+    message: DS.belongsTo('message'),
+    miniAvatar: function() {
+        return this.get('avatar') + '?s=40';
+    }.property('avatar'),
     isLeader: function() {
         var result, rank = this.get('rank');
         if (rank === 'Resistance Leader') {

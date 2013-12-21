@@ -1,0 +1,45 @@
+<div {{bind-attr class=isLeader:message-leader:message}}>
+    <div class='row'>
+        <div class='avatar left'>
+            <img {{bind-attr src=avatar}} alt='avatar'>
+        </div>
+        <div class='col-lg-10'>
+            <div class='row'>
+                <div class='left'>
+                    <span class='user'>{{user}}</span> {{rank}}
+                </div>
+                <div class='right'>
+                    {{format-date creationDate}}
+                </div>
+            </div>
+            <div class='row'>
+                <div class='left'>
+                    {{text}}
+                </div>
+            </div>
+            <div class='row'>
+                <div class='left'>
+                    {{#if showComments}}
+                        <span>{{#linkTo 'comments' this}}Show Comments{{/linkTo}}
+                    {{else}}
+                        <span>{{#linkTo 'message' this}}Hide Comments{{/linkTo}}
+                    {{/if}}
+                </div>
+                <div class='right col-lg-offset-8'>
+                    <button class='btn btn-primary btn-xs'>Save Message</button>
+                </div>
+            </div>
+            {{#unless isLeader}}
+                <div class='row'>
+                    <div class='left'>
+                        <span>{{upvotes}}</span>
+                        <span {{action 'upvote' this}} class="glyphicon glyphicon-ok-sign"></span>
+                        <span>{{downvotes}}</span>
+                        <span {{action 'downvote' this}} class="glyphicon glyphicon-remove-circle"></span>
+                    </div>
+                </div>
+            {{/unless}}
+        </div>
+    </div>
+</div>
+{{outlet}}

@@ -12,7 +12,7 @@ class Comment extends Eloquent
      */
     public function message()
     {
-        return $this->belongsTo('Message');
+        return $this->belongsTo('Message', 'id', 'message_id');
     }
 
     /**

@@ -5,6 +5,15 @@
  */
 class UserController extends BaseController
 {
+
+    /**
+     * Return the current logged in user
+     */
+    public function getIndex()
+    {
+        return UserHelper::getCurrentUser();
+    }
+
     /**
      * Method for returning the login view
      */

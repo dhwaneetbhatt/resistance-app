@@ -18,9 +18,15 @@ Route::group(array("before" => "auth"), function()
         return View::make('home');
     }));
 
-    Route::controller('messages', 'MessageController');
+    Route::get('messages', 'MessageController@getAll');
+    Route::get('messages/{id}', 'MessageController@get');
+    Route::post('messages', 'MessageController@create');
+    Route::put('messages/{id}', 'MessageController@update');
 
-    Route::controller('comments', 'CommentController');
+    Route::get('comments', 'CommentController@getByIds');
+    Route::post('comments', 'CommentController@create');
+
+    Route::controller('user', 'UserController');
 });
 
 Route::get('/login', array("as" => "login",

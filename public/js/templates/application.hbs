@@ -1,18 +1,18 @@
-<div class="container">
-    <div class="row">
-        <div class="col-xs-12" id="header">
-            <h2>The Resistance</h2>
-        </div>
+<div id='header'>
+    <h2>The Resistance</h2>
+</div>
+<div class='main container'>
+    <div class='row'>
     </div>
-    <div class="row">
-        <div class="col-xs-3">
-            <ul id="menu">
+    <div class='row'>
+        <div class='col-lg-3'>
+            <ul id='menu'>
                 <li>{{#linkTo 'messages'}}Broadcast Messages{{/linkTo}}</li>
                 <li>Saved Messages</li>
                 <li><a href='/logout'>Logout</a></li>
             </ul>
         </div>
-        <div class="col-xs-9">
+        <div class='col-lg-9'>
             {{outlet}}
         </div>
     </div>
