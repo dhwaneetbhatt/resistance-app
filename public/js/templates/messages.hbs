@@ -38,7 +38,7 @@
                     <div class='col-lg-4'>
                         <span class='user'>{{user}}</span> {{rank}}
                     </div>
-                    <div class='right'>
+                    <div class='col-lg-2 col-lg-offset-6'>
                         {{format-date creationDate}}
                     </div>
                 </div>
@@ -54,6 +54,14 @@
                     <div class='col-lg-3 col-lg-offset-7'>
                         <button class='btn btn-primary btn-xs'>Add Comments</button>
                         <button class='btn btn-primary btn-xs'>Save Message</button>
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class='col-lg-2'>
+                            <span>{{upvotes}}</span>
+                            <span {{action 'upvote' this}} class="glyphicon glyphicon-ok-sign"></span>
+                            <span>{{downvotes}}</span>
+                            <span {{action 'downvote' this}} class="glyphicon glyphicon-remove-circle"></span>
                     </div>
                 </div>
             </div>

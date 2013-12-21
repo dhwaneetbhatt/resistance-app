@@ -11,15 +11,19 @@ class UserController extends BaseController
      */
     public function getIndex()
     {
-        if (Auth::guest())
-        {
-            App::abort(403, 'Not logged in');
-        }
-
         // get user from the currently logged in session
         $id = Auth::user()->id;
         $user = User::find($id);
-        return $user;
+
+        $out = array(
+            'id' => $user->id,
+            'email' => $user->email,
+            'firstName' => $user->first_name,
+            'lastName' => $user->last_name,
+            'rank' => $user->rank->name
+        );
+
+        return $out;
     }
 
     /**

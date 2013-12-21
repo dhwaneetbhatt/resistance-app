@@ -8,7 +8,7 @@ class MessageController extends BaseController
     /**
      * Return a list of all messages
      */
-    public function getIndex()
+    public function get()
     {
         // array to be returned to the UI
         $messages = array();
@@ -27,30 +27,54 @@ class MessageController extends BaseController
             $rank = $user->rank->name;
 
             array_push($messages, array(
-                "id" => $message->id,
-                "user" => $username,
-                "rank" => $rank,
-                "text" => $message->text,
-                "creationDate" => $creationDate
+                'id' => $message->id,
+                'userId' =>  $user->id,
+                'user' => $username,
+                'rank' => $rank,
+                'text' => $message->text,
+                'upvotes' => $message->upvotes,
+                'downvotes' => $message->downvotes,
+                'creationDate' => $creationDate
             ));
         }
 
         // return the response
-        $out = array("message" => $messages);
+        $out = array('message' => $messages);
         return $out;
     }
 
     /**
      * Save a new message to db
      */
-    public function postIndex()
+    public function create()
     {   
         $message = Input::get('message');
 
-        $message = new Message(array(
+        $dbMessage = new Message(array(
             'user_id' => $message['userId'],
             'text' => $message['text']
         ));
-        $message->save();
+        $dbMessage->save();
+
+        $message['id'] = $dbMessage->id;
+        $out = array('message' => $message);
+        return $out;
+    }
+
+    /**
+     * Update the model
+     */
+    public function update($id)
+    {   
+        $message = Input::get('message');
+
+        $dbMessage = Message::find($id);
+        $dbMessage->upvotes = $message['upvotes'];
+        $dbMessage->downvotes = $message['downvotes'];
+        $dbMessage->save();
+
+        $message['id'] = $dbMessage->id;
+        $out = array('message' => $message);
+        return $out;
     }
 }

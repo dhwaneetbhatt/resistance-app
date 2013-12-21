@@ -39,14 +39,22 @@ module.exports = function(grunt) {
                 }
             }
         },
-        clean: ["dist/images/"],
+        clean: ["dist/images/", "dist/fonts/"],
         copy: {
-            main: {
+            images: {
                 files: [{
                     expand: true,
                     cwd: 'images/',
                     src: ['**'],
                     dest: 'dist/images/'
+                }]
+            },
+            fonts: {
+                files: [{
+                    expand: true,
+                    cwd: 'fonts/',
+                    src: ['**'],
+                    dest: 'dist/fonts/'
                 }]
             }
         },

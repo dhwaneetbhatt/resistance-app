@@ -18,7 +18,9 @@ Route::group(array("before" => "auth"), function()
         return View::make('home');
     }));
 
-    Route::controller('messages', 'MessageController');
+    Route::get('messages', 'MessageController@get');
+    Route::post('messages', 'MessageController@create');
+    Route::put('messages/{id}', 'MessageController@update');
 
     Route::controller('comments', 'CommentController');
 

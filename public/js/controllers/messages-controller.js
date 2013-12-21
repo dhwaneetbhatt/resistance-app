@@ -35,6 +35,8 @@ Resistance.MessagesController = Ember.ArrayController.extend({
 
             var message = this.store.createRecord('message', {
                 'userId': user.get('id'),
+                'user': user.get('name'),
+                'rank': user.get('rank'),
                 'text': text
             });
             message.save();
@@ -46,6 +48,16 @@ Resistance.MessagesController = Ember.ArrayController.extend({
          */
         cancel: function() {
             this.set('isCreating', false);
-        }
+        },
+
+        upvote: function(message) {
+            message.incrementProperty('upvotes');
+            message.save();
+        },
+
+        downvote: function(message) {
+            message.incrementProperty('downvotes');
+            message.save();
+        },
     }
 });
