@@ -20,6 +20,6 @@ class Message extends Eloquent
      */
     public function comments()
     {
-        return $this->hasMany('Comment');
+        return $this->hasMany('Comment', 'message_id', 'id')->orderBy('created_at', 'desc');
     }
 }

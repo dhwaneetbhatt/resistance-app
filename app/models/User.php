@@ -44,7 +44,7 @@ class User extends Eloquent implements UserInterface
      */
     public function messages()
     {
-        return $this->hasMany('Message');
+        return $this->hasMany('Message', 'user_id', 'id');
     }
 
 }

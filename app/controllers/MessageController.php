@@ -8,38 +8,31 @@ class MessageController extends BaseController
     /**
      * Return a list of all messages
      */
-    public function get()
+    public function getAll()
     {
-        // array to be returned to the UI
-        $messages = array();
-
         // fetch all messages sorted by creation date
         $dbMessages = Message::orderBy('created_at', 'desc')->get();
 
-        foreach ($dbMessages as $message)
-        {
-            // PHP, for some weird reason, gives seconds since 1970
-            $creationDate = $message->created_at->getTimestamp() * 1000;
-
-            // get the username
-            $user = $message->user;
-            $username = $user->first_name . ' ' .  $user->last_name;
-            $rank = $user->rank->name;
-
-            array_push($messages, array(
-                'id' => $message->id,
-                'userId' =>  $user->id,
-                'user' => $username,
-                'rank' => $rank,
-                'text' => $message->text,
-                'upvotes' => $message->upvotes,
-                'downvotes' => $message->downvotes,
-                'creationDate' => $creationDate
-            ));
-        }
+        $messages  = MessageHelper::getSvcArray($dbMessages);
 
         // return the response
         $out = array('message' => $messages);
+        return $out;
+    }
+
+    /**
+     * Return a message along with its comments
+     */
+    public function get($id)
+    {
+        // fetch all messages sorted by creation date
+        $dbMessage = Message::find($id);
+
+        $message  = MessageHelper::getSvcModel($dbMessage);
+        $comments = CommentHelper::getSvcArray($dbMessage->comments);
+
+        // return the response
+        $out = array('message' => $message, 'comments' => $comments);
         return $out;
     }
 

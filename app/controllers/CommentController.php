@@ -8,10 +8,17 @@ class CommentController extends BaseController
     /**
      * Return a list of all comments
      */
-    public function getIndex()
+    public function getByIds()
     {
-        // fetch all comments
-        $comments = Comment::all();
+        // to be returned in the response
+        $comments = array();
+
+        $ids = Input::get('ids');
+
+        foreach ($ids as $id)
+        {
+            array_push($comments, CommentHelper::getSvcModel(Comment::find($id)));
+        }
 
         return $comments;
     }
@@ -19,9 +26,20 @@ class CommentController extends BaseController
     /**
      * Save a new comment to db
      */
-    public function postNew()
+    public function create()
     {
-        $comment = new Comment(Input::all());
-        $comment->save();
+        $comment = Input::get('comment');
+
+        $dbComment = new Comment(array(
+            'user_id' => $comment['userId'],
+            'message_id' => $comment['messageId'],
+            'text' => $comment['text']
+        ));
+        $dbComment->save();
+
+        $comment['id'] = $dbComment->id;
+        $out = array('comment' => $comment);
+        return $out;
+
     }
 }

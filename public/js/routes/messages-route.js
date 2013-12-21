@@ -1,5 +1,5 @@
 /**
- * Route defintion for Message
+ * Route defintion for messages
  */
 Resistance.MessagesRoute = Ember.Route.extend({
     model: function() {

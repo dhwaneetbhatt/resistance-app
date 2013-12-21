@@ -1,7 +1,8 @@
 /**
- * Controller for messages
+ * Controller for comments
  */
-Resistance.MessagesController = Ember.ArrayController.extend({
+Resistance.CommentsController = Ember.ArrayController.extend({
+    needs: ['message'],
 
     remainingText: function() {
         var text = this.get('text'), length = 0, remaining;
@@ -32,15 +33,21 @@ Resistance.MessagesController = Ember.ArrayController.extend({
         save: function() {
             var text = this.get('text');
             var user = Resistance.get('user');
+            var message = this.get('controllers.message').get('model');
 
-            var message = this.store.createRecord('message', {
+            var comment = this.store.createRecord('comment', {
                 'userId': user.get('id'),
+                'messageId': message.get('id'),
                 'user': user.get('name'),
                 'rank': user.get('rank'),
                 'text': text
             });
-            message.save();
+            comment.save().then(function() {
+                message.get('comments').addObject(comment);
+            });
+
             this.set('isCreating', false);
+            this.set('text', null);
         },
 
         /**
@@ -49,18 +56,7 @@ Resistance.MessagesController = Ember.ArrayController.extend({
         cancel: function() {
             this.set('isCreating', false);
             this.set('text', null);
-        },
-
-        /**
-         * Handles upvotes and downvotes (model updates)
-         */
-        upvote: function(message) {
-            message.incrementProperty('upvotes');
-            message.save();
-        },
-        downvote: function(message) {
-            message.incrementProperty('downvotes');
-            message.save();
         }
+
     }
 });

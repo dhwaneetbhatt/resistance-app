@@ -33,12 +33,12 @@
 <div class='container'>
     <div class='row'>
         {{#each model}}
-            <div /class='message col-lg-12'>
+            <div class='message col-lg-12'>
                 <div class='row'>
                     <div class='col-lg-4'>
                         <span class='user'>{{user}}</span> {{rank}}
                     </div>
-                    <div class='col-lg-2 col-lg-offset-6'>
+                    <div class='right'>
                         {{format-date creationDate}}
                     </div>
                 </div>
@@ -49,10 +49,9 @@
                 </div>
                 <div class='row'>
                     <div class='col-lg-2'>
-                        <button class='btn btn-primary btn-xs'>Show Comments</button>
+                        <span>{{#linkTo 'message' this}}Show{{/linkTo}}
                     </div>
-                    <div class='col-lg-3 col-lg-offset-7'>
-                        <button class='btn btn-primary btn-xs'>Add Comments</button>
+                    <div class='col-lg-2 col-lg-offset-8'>
                         <button class='btn btn-primary btn-xs'>Save Message</button>
                     </div>
                 </div>

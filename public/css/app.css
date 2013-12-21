@@ -1,3 +1,11 @@
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
 #header {
     border-style: solid;
     border-width: 0 0 2px 0;
@@ -51,4 +59,8 @@ ul#menu li {
     font-weight: bold;
     text-decoration: underline;
     color: blue;
+}
+
+.comment-create {
+    margin-top: 10px;
 }
