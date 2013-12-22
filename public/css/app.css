@@ -6,6 +6,24 @@
     float: left;
 }
 
+#body-title {
+    margin-right: auto;
+    margin-left: auto;
+    width: 22%;
+}
+
+.login-container {
+    margin-top: 1%;
+}
+
+.register-container {
+    margin-top: 1%;
+}
+
+.action-link {
+    margin-top: 60px;
+}
+
 #header {
     border-style: solid;
     border-width: 0 0 2px 0;

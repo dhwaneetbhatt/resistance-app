@@ -6,6 +6,14 @@ class User extends Eloquent implements UserInterface
 {
     protected $table = 'users';
 
+    public static $rules = array(
+       'first_name'=>'required|alpha|min:2',
+       'last_name'=>'required|alpha|min:2',
+       'email'=>'required|email|unique:users',
+       'password'=>'required|alpha_num|between:6,64|confirmed',
+       'password_confirmation'=>'required|alpha_num|between:6,64'
+    );
+
     /**
      * Excluded password the model's JSON form.
      */

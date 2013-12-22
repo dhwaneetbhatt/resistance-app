@@ -37,7 +37,7 @@ Route::filter('auth', function()
 {
     if (Auth::guest())
     {
-        return Redirect::route('login');
+        return Redirect::to('/login');
     }
 });
 
@@ -45,6 +45,6 @@ Route::filter('guest', function()
 {
     if (Auth::check())
     {
-        return Redirect::route('home');
+        return Redirect::to('/home');
     }
 });

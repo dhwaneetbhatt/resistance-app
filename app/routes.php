@@ -11,28 +11,36 @@
 |
 */
 
-Route::group(array("before" => "auth"), function()
+Route::group(array('before' => 'auth'), function()
 {
-    Route::get('/', array("as" => "home", function()
+    // root route, redirect to home, if not logged in, will go to login page
+    Route::get('/', array('as' => 'home', function()
     {
         return View::make('home');
     }));
 
+    // routes for messages
     Route::get('messages', 'MessageController@getAll');
     Route::get('messages/{id}', 'MessageController@get');
     Route::post('messages', 'MessageController@create');
     Route::put('messages/{id}', 'MessageController@update');
 
+    // routes for comments
     Route::get('comments', 'CommentController@getByIds');
     Route::post('comments', 'CommentController@create');
 
+    // routes for saved messages
+    Route::get('savedmessages', 'SavedMessageController@getAll');
+    Route::post('savedmessages', 'SavedMessageController@create');
+
+    // routes for user
     Route::controller('user', 'UserController');
 });
 
-Route::get('/login', array("as" => "login",
-                           "uses" => "UserController@showLogin"
-          ))->before('guest');
 
+// routes for login and signup
+Route::get('/login', 'UserController@showLogin')->before('guest');
 Route::post('/login', 'UserController@doLogin');
-
 Route::get('/logout', 'UserController@doLogout');
+Route::get('/register', 'UserController@showRegister');
+Route::post('/register', 'UserController@doRegister');

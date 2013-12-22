@@ -18,7 +18,7 @@ class CreateRanksTable extends Migration {
 
             // columns
             $table->increments('id');
-            $table->string('name');
+            $table->string('name', 100);
             $table->timestamps();
         });
     }

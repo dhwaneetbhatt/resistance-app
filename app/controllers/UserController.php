@@ -5,6 +5,7 @@
  */
 class UserController extends BaseController
 {
+    protected $layout = "views.main";
 
     /**
      * Return the current logged in user
@@ -15,11 +16,46 @@ class UserController extends BaseController
     }
 
     /**
+     * Returns the signup form
+     */
+    public function showRegister()
+    {
+        $this->layout->content = View::make('views.register');
+    }
+
+    /**
+     * Method for handling user registration
+     */
+    public function doRegister()
+    {
+        $validator = Validator::make(Input::all(), User::$rules);
+
+        if ($validator->passes())
+        {
+            $user = new User;
+            $user->first_name = Input::get('first_name');
+            $user->last_name = Input::get('last_name');
+            $user->email = Input::get('email');
+            $user->password = Hash::make(Input::get('password'));
+            $user->avatar = UserHelper::getAvatar($user->email);
+            $user->save();
+            return Redirect::to('/login')
+                   ->with('message', 'Welcome to the Resistance !!!');
+        }
+        else
+        {
+            return Redirect::to('/register')
+                   ->with('message', 'The following errors occurred')
+                   ->withErrors($validator)->withInput();
+        }
+    }
+
+    /**
      * Method for returning the login view
      */
     public function showLogin()
     {
-        return View::make('login');
+        $this->layout->content = View::make('views.login');
     }
 
     /**
@@ -36,9 +72,14 @@ class UserController extends BaseController
         {
             return Redirect::route('home');
         }
+        else
+        {
+            // authentication failure! lets go back to the login page
+            return Redirect::to('/login')
+                   ->with('message', 'Your username/password combination was incorrect')
+                   ->withInput();    
+        }
         
-        // authentication failure! lets go back to the login page
-        return Redirect::route('login');
     }
 
     /**
@@ -47,7 +88,7 @@ class UserController extends BaseController
     public function doLogout()
     {
         Auth::logout();
-        return View::make('login');
+        $this->layout->content = View::make('views.login');
     }
 
 }
