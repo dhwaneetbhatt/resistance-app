@@ -62,6 +62,20 @@ Resistance.MessagesController = Ember.ArrayController.extend({
         downvote: function(message) {
             message.incrementProperty('downvotes');
             message.save();
+        },
+
+        /**
+         * Store this message to Saved Message for this user
+         */
+        store: function(message) {
+            var messageId = message.get('id'),
+                userId = Resistance.get('user').get('id');
+            $.ajax({
+                url: '/savedmessages',
+                method: 'POST',
+                data: {'userId': userId, 'messageId': messageId},
+                dataType: 'json'
+            });
         }
     }
 });

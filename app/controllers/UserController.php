@@ -79,7 +79,6 @@ class UserController extends BaseController
                    ->with('message', 'Your username/password combination was incorrect')
                    ->withInput();    
         }
-        
     }
 
     /**

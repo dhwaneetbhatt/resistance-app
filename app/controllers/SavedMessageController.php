@@ -17,9 +17,7 @@ class SavedMessageController extends BaseController
 
         $savedMessages  = SavedMessageHelper::getSvcArray($dbSavedMessages);
 
-        // return the response
-        $out = array('message' => $savedMessages);
-        return $out;
+        return $savedMessages;
     }
 
     /**

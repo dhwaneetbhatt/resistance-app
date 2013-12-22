@@ -17,7 +17,6 @@ class CreateSavedMessagesTable extends Migration {
             $table->engine = 'InnoDB';
 
             // columns
-            $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('message_id');
             $table->timestamps();
@@ -25,6 +24,7 @@ class CreateSavedMessagesTable extends Migration {
             // indexes and constraints
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('message_id')->references('id')->on('messages');
+            $table->primary(array('user_id', 'message_id'));
         });
     }
 
