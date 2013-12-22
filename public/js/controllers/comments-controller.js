@@ -41,6 +41,7 @@ Resistance.CommentsController = Ember.ArrayController.extend({
                 'messageId': message.get('id'),
                 'user': user.get('name'),
                 'rank': user.get('rank'),
+                'avatar': user.get('avatar'),
                 'text': text
             });
             comment.save().then(function() {

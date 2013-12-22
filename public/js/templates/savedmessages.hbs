@@ -1,6 +1,6 @@
 <div class='container'>
     <div class='row'>
-        {{#each model}}
+        {{#each controller}}
             <div {{bind-attr class=isLeader:message-leader:message}}>
                 <div class='row'>
                     <div class='avatar left'>
@@ -25,7 +25,7 @@
                                 <span>{{#linkTo 'message' this}}Expand{{/linkTo}}
                             </div>
                             <div class='right'>
-                                <button class='btn btn-primary btn-xs'>Save Message</button>
+                                <button {{action 'store' this}} class='btn btn-primary btn-xs'>Save Message</button>
                             </div>
                         </div>
                         <div class='row'>
