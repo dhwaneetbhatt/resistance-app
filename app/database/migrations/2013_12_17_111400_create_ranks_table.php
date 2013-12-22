@@ -20,7 +20,17 @@ class CreateRanksTable extends Migration {
             $table->increments('id');
             $table->string('name', 100);
             $table->timestamps();
+
+            // indexes
+            $table->unique('name');
         });
+
+        Eloquent::unguard();
+        Rank::create(array('name' => 'Resistance Leader'));
+        Rank::create(array('name' => 'Squadron Leader'));
+        Rank::create(array('name' => 'Unit Commander'));
+        Rank::create(array('name' => 'Weapons Specialist'));
+        Rank::create(array('name' => 'Rookie'));
     }
 
     /**

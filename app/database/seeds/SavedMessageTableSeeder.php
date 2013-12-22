@@ -13,9 +13,10 @@ class SavedMessageTableSeeder extends Seeder
 
         $id = Message::where('user_id', $userId1)->firstOrFail()->pluck('id');
 
-        DB::insert(
-            'insert into saved_messages set user_id = ?, message_id = ?',
-            array($userId2, $id)
-        );
+        SavedMessage::create(array(
+            'user_id' => $userId2,
+            'message_id' => $id
+        ));
+
     }
 }

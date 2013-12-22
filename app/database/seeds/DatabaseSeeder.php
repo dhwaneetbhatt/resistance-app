@@ -14,10 +14,8 @@ class DatabaseSeeder extends Seeder {
 		DB::table('saved_messages')->delete();
 		DB::table('comments')->delete();
 		DB::table('messages')->delete();
-		DB::table('users')->delete();
-		DB::table('ranks')->delete();
+		DB::table('users')->where('email', '!=', 'dhwaneetbhatt@gmail.com')->delete();
 
-		$this->call('RankTableSeeder');
 		$this->call('UserTableSeeder');
 		$this->call('MessageTableSeeder');
 		$this->call('CommentTableSeeder');

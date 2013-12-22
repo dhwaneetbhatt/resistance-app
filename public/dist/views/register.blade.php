@@ -18,6 +18,13 @@
                             {{ Form::text('email', null, array('class'=>'form-control', 'placeholder'=>'Email')) }}
                         </div>
                         <div class='form-group'>
+                            {{ Form::select('rank',
+                               array('Rookie' => 'Rookie', 'Unit Commander' => 'Unit Commander',
+                               'Weapons Specialist' => 'Weapons Specialist', 'Squadron Leader' => 'Squadron Leader'),
+                               null, array('class'=>'form-control', 'placeholder'=>'Rank'))
+                            }}
+                        </div>
+                        <div class='form-group'>
                             {{ Form::password('password', array('class'=>'form-control', 'placeholder'=>'Password')) }}
                         </div>
                         <div class='form-group'>

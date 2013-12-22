@@ -13,7 +13,10 @@ class SavedMessageController extends BaseController
         $userId = Input::get('userId');
 
         // fetch all messages for this user
-        $dbSavedMessages = DB::table('saved_messages')->where('user_id', $userId)->get();
+        $dbSavedMessages = DB::table('saved_messages')
+                          ->where('user_id', $userId)
+                          ->orderBy('created_at', 'desc')
+                          ->get();
 
         $savedMessages  = SavedMessageHelper::getSvcArray($dbSavedMessages);
 
@@ -28,10 +31,10 @@ class SavedMessageController extends BaseController
         $userId = Input::get('userId');
         $messageId = Input::get('messageId');
 
-        DB::insert(
-            'insert into saved_messages set user_id = ?, message_id = ?',
-            array($userId, $messageId)
-        );
+        SavedMessage::create(array(
+            'user_id' => $userId,
+            'message_id' => $messageId
+        ));
     }
 
 }

@@ -6,19 +6,19 @@ class UserTableSeeder extends Seeder
     {
         Eloquent::unguard();
         
-        DB::table('users')->delete();
+        DB::table('users')->where('email', '!=', 'dhwaneetbhatt@gmail.com')->delete();
 
-        $id1 = Rank::where('name', 'Resistance Leader')->pluck('id');
+        $id1 = Rank::where('name', 'Rookie')->pluck('id');
 
         $id2 = Rank::where('name', 'Squadron Leader')->pluck('id');
 
         User::create(array(
-            'email' => 'dhwaneetbhatt@gmail.com',
-            'password' => Hash::make('leader'),
-            'first_name' => 'John',
-            'last_name' => 'Connor',
+            'email' => 'kyle.reese@email.com',
+            'password' => Hash::make('future'),
+            'first_name' => 'Kyle',
+            'last_name' => 'Reese',
             'rank_id' => $id1,
-            'avatar' => UserHelper::getAvatar('dhwaneetbhatt@gmail.com')
+            'avatar' => UserHelper::getAvatar('kyle.reese@email.com')
         ));
 
         User::create(array(

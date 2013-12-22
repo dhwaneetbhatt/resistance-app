@@ -6,6 +6,12 @@
 class UserController extends BaseController
 {
     protected $layout = "views.main";
+    public $rankList;
+
+    public function __construct()
+    {
+        $this->rankList = array("Squadron Leader", "Weapons Specialist");
+    }
 
     /**
      * Return the current logged in user
@@ -33,6 +39,9 @@ class UserController extends BaseController
         if ($validator->passes())
         {
             $user = new User;
+
+            $rankId = Rank::where('name', Input::get('rank'))->pluck('id');
+            $user->rank_id = $rankId;
             $user->first_name = Input::get('first_name');
             $user->last_name = Input::get('last_name');
             $user->email = Input::get('email');
