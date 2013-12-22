@@ -31,10 +31,21 @@ class SavedMessageController extends BaseController
         $userId = Input::get('userId');
         $messageId = Input::get('messageId');
 
-        SavedMessage::create(array(
-            'user_id' => $userId,
-            'message_id' => $messageId
-        ));
+        $exists = SavedMessage::where('user_id', $userId)
+                    ->where('message_id', $messageId)
+                    ->pluck('user_id');
+
+        if (is_null($exists))
+        {
+            SavedMessage::create(array(
+                'user_id' => $userId,
+                'message_id' => $messageId
+            ));
+        }
+        else
+        {
+            App::abort(202, 'Already Saved');
+        }
     }
 
 }

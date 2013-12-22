@@ -9,6 +9,7 @@ Resistance.Message = DS.Model.extend({
     text: DS.attr('string'),
     upvotes: DS.attr('number'),
     downvotes: DS.attr('number'),
+    interaction: DS.attr('boolean'),
     comments: DS.hasMany('comment', {async: 'true'}),
     creationDate: DS.attr('date'),
     isLeader: function() {

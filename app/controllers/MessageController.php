@@ -66,7 +66,15 @@ class MessageController extends BaseController
         $dbMessage->downvotes = $message['downvotes'];
         $dbMessage->save();
 
+        // for the current user, mark this message as interacted
+        $currentUser = UserHelper::getCurrentUser();
+        Interaction::create(array(
+            'user_id' => $currentUser['id'],
+            'message_id' => $id
+        ));
+
         $message['id'] = $dbMessage->id;
+        $message['interaction'] = true;
         $out = array('message' => $message);
         return $out;
     }

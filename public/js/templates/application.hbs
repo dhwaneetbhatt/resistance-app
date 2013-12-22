@@ -6,10 +6,14 @@
     </div>
     <div class='row'>
         <div class='col-lg-3'>
-            <ul id='menu'>
+            <ul id='main-menu' class='menu'>
                 <li>{{#linkTo 'messages'}}Broadcast Messages{{/linkTo}}</li>
                 <li>{{#linkTo 'savedmessages'}}Saved Messages{{/linkTo}}</li>
                 <li><a href='/logout'>Logout</a></li>
+            </ul>
+            <ul class='menu'>
+                <li><h6> {{Resistance.user.name}}</h6></li>
+                <li><img {{bind-attr src=Resistance.user.avatar}} alt='avatar'></li>
             </ul>
         </div>
         <div class='col-lg-9'>

@@ -21,6 +21,9 @@ class MessageHelper extends Helper
 
         $commentIds = Helper::getIds($dbMessage->comments);
 
+        $currentUser = UserHelper::getCurrentUser();
+        $interaction = self::getInteraction($currentUser['id'], $dbMessage->id);
+
         $message = array(
             'id' => $dbMessage->id,
             'userId' =>  $user->id,
@@ -30,6 +33,7 @@ class MessageHelper extends Helper
             'text' => $dbMessage->text,
             'upvotes' => $dbMessage->upvotes,
             'downvotes' => $dbMessage->downvotes,
+            'interaction' => $interaction,
             'comments' => $commentIds,
             'creationDate' => $creationDate
         );
@@ -49,5 +53,21 @@ class MessageHelper extends Helper
             array_push($messages, self::getSvcModel($dbMessage));
         }
         return $messages;
+    }
+
+    /**
+     * Gets the interaction flag for this message and user
+     */
+    public static function getInteraction($userId, $messageId)
+    {
+        $result = false;
+        $value = Interaction::where('user_id', $userId)
+                    ->where('message_id', $messageId)
+                    ->pluck('user_id');
+        if (!is_null($value))
+        {
+            $result = true;
+        }
+        return $result;
     }
 }

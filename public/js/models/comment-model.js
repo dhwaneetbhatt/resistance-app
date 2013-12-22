@@ -9,7 +9,6 @@ Resistance.Comment = DS.Model.extend({
     avatar: DS.attr('string'),
     text: DS.attr('string'),
     creationDate: DS.attr('date'),
-    message: DS.belongsTo('message'),
     miniAvatar: function() {
         return this.get('avatar') + '?s=40';
     }.property('avatar'),

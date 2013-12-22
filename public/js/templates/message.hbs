@@ -30,14 +30,21 @@
                 </div>
             </div>
             {{#unless isLeader}}
-                <div class='row'>
+                {{#if interaction}}
+                    <div class='marked left'>
+                        <span>{{upvotes}}</span>
+                        <span class="glyphicon glyphicon-ok-sign"></span>
+                        <span>{{downvotes}}</span>
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                    </div>
+                {{else}}
                     <div class='left'>
                         <span>{{upvotes}}</span>
                         <span {{action 'upvote' this}} class="glyphicon glyphicon-ok-sign"></span>
                         <span>{{downvotes}}</span>
                         <span {{action 'downvote' this}} class="glyphicon glyphicon-remove-circle"></span>
                     </div>
-                </div>
+                {{/if}}
             {{/unless}}
         </div>
     </div>

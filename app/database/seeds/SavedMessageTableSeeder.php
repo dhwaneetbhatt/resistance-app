@@ -11,7 +11,12 @@ class SavedMessageTableSeeder extends Seeder
         $userId1 = User::where('email', 'dhwaneetbhatt@gmail.com')->pluck('id');
         $userId2 = User::where('email', 'will.smith@email.com')->pluck('id');
 
-        $id = Message::where('user_id', $userId1)->firstOrFail()->pluck('id');
+        $messages = Message::where('user_id', $userId1)->get();
+
+        foreach($messages as $message)
+        {
+            $id = $message->id;
+        }
 
         SavedMessage::create(array(
             'user_id' => $userId2,

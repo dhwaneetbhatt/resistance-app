@@ -38,6 +38,9 @@ Resistance.MessagesController = Ember.ArrayController.extend({
                 'userId': user.get('id'),
                 'user': user.get('name'),
                 'rank': user.get('rank'),
+                'avatar': user.get('avatar'),
+                'upvotes': 0,
+                'downvotes': 0,
                 'text': text
             });
             message.save();
@@ -74,7 +77,12 @@ Resistance.MessagesController = Ember.ArrayController.extend({
                 url: '/savedmessages',
                 method: 'POST',
                 data: {'userId': userId, 'messageId': messageId},
-                dataType: 'json'
+                dataType: 'json',
+                statusCode: {
+                    202: function() {
+                        alert('You have already saved it');
+                    }
+                }
             });
         }
     }
