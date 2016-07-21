@@ -1,10 +1,10 @@
 {
-    "name": "Plutus",
+    "name": "resistance-app",
     "version": "0.0.8",
-    "description": "Plutus Money Manager",
+    "description": "John Connor's Resistance App",
     "repository": {
         "type": "git",
-        "url": "https://github.com/dhwaneetbhatt/plutus-web-app.git"
+        "url": "https://github.com/dhwaneetbhatt/resistance-app.git"
     },
     "engines": {
         "node": ">= 0.6.0",
